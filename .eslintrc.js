@@ -27,7 +27,7 @@ module.exports = {
     "react/jsx-filename-extension": [
       1,
       {
-        extensions: [".tsx", ".jsx"],
+        extensions: [".jsx"],
       },
     ],
     "react/button-has-type": 1,

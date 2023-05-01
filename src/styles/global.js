@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
-  button {
+  button, input {
     border: none;
     background: none;
     box-shadow: none;
