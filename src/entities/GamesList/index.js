@@ -1,1 +1,1 @@
-export { GamesList } from "./GamesList";
+export { GamesList } from "./games-list";

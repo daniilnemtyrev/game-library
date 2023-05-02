@@ -1,2 +1,14 @@
 export { GamepadLogo } from "./gamepad-logo";
 export { Search } from "./search";
+export { AndroidLogo } from "./android-logo";
+export { PlaystationLogo } from "./ps-logo";
+export { NintendoLogo } from "./nintendo-logo";
+export { WindowsLogo } from "./windows-logo";
+export { XboxLogo } from "./xbox-logo";
+export { LinuxLogo } from "./linux-logo";
+export { AppleLogo } from "./apple-logo";
+export { IOSLogo } from "./ios-logo";
+export { MacOSLogo } from "./macos-logo";
+export { Gift } from "./gift";
+export { Plus } from "./plus";
+export { Other } from "./other";

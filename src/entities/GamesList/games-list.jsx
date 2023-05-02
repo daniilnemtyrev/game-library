@@ -1,3 +1,4 @@
+import { GameCard } from "entities/GameCard";
 import { searchSelector } from "features/filters";
 import { useSelector } from "react-redux";
 import { useGetEventQuery } from "shared/api/hooks";
@@ -6,7 +7,7 @@ import styled from "styled-components";
 export const GamesList = () => {
   const search = useSelector(searchSelector);
   const { data: games, isLoading } = useGetEventQuery({ search });
-  console.log(games);
+  //   console.log(games);
 
   if (isLoading) {
     return <h1>isLoading...</h1>;
@@ -15,7 +16,7 @@ export const GamesList = () => {
   return (
     <Container>
       {games?.results?.map((game) => (
-        <h3>{game.name}</h3>
+        <GameCard key={game.id} game={game} />
       ))}
     </Container>
   );
@@ -26,4 +27,5 @@ const Container = styled.section`
   flex-direction: column;
   gap: 15px;
   align-items: center;
+  margin-top: 40px;
 `;

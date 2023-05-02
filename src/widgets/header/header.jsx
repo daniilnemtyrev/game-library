@@ -65,7 +65,7 @@ const Menu = styled.button`
 const Sticks = styled.div`
   width: 20px;
   height: 3px;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.white};
   position: relative;
   align-self: center;
 
@@ -73,7 +73,7 @@ const Sticks = styled.div`
     content: "";
     width: 20px;
     height: 3px;
-    background-color: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.white};
     position: absolute;
     left: 0;
     top: -7px;
@@ -84,7 +84,7 @@ const Sticks = styled.div`
     content: "";
     width: 20px;
     height: 3.5px;
-    background-color: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.white};
     position: absolute;
     left: 0;
     top: 7px;

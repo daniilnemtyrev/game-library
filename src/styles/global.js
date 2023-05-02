@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
   html,
   body {
     background-color: ${({ theme }) => theme.colors.bg};
-    color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.white};
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }

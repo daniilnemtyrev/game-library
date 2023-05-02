@@ -8,7 +8,14 @@ const nextConfig = {
     BASE_URL: process.env.BASE_URL,
   },
   images: {
-    domains: [process.env.BASE_URL],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "media.rawg.io",
+        port: "",
+        pathname: "/media/**",
+      },
+    ],
   },
 };
 

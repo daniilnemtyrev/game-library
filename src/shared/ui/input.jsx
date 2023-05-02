@@ -38,11 +38,12 @@ const Wrapper = styled.div`
   & label {
     width: fit-content;
     margin-right: 10px;
-    color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.white};
   }
 `;
 
 const StyledInput = styled.input`
+  color: ${({ theme }) => theme.colors.white};
   height: 30px;
   padding: 5px;
   padding-left: 32px;

@@ -1,21 +1,50 @@
-import styled from "styled-components";
+// @ts-nocheck
+import styled, { css } from "styled-components";
+import { switchProp } from "styled-tools";
 
-export function Text({ title, text }) {
+export function Text({ title = "", text = "", size = "L", align = "center" }) {
   return (
-    <Container>
-      {title && <Title>{title}</Title>}
+    <Container align={align}>
+      {title && <Title size={size}>{title}</Title>}
       {text && <StyledText>{text}</StyledText>}
     </Container>
   );
 }
 
 const Container = styled.div`
-  text-align: center;
+  ${switchProp("align", {
+    left: css`
+      text-align: left;
+    `,
+
+    right: css`
+      text-align: right;
+    `,
+
+    center: css`
+      text-align: center;
+    `,
+  })}
 `;
 
-const Title = styled.h1`
-  font-size: 36px;
-  line-height: 40px;
+const Title = styled.span`
+  font-weight: bold;
+  ${switchProp("size", {
+    S: css`
+      font-size: 20px;
+      line-height: 24px;
+    `,
+
+    M: css`
+      font-size: 28px;
+      line-height: 32px;
+    `,
+
+    L: css`
+      font-size: 36px;
+      line-height: 40px;
+    `,
+  })}
 `;
 
 const StyledText = styled.p`
