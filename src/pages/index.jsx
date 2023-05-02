@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Layout } from "widgets";
+import { Layout } from "widgets/layout";
 import { Text } from "shared/ui";
 import { GamesService } from "shared/api/services/games-service";
 import { QueryClient, dehydrate } from "react-query";

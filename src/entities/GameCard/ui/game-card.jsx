@@ -5,9 +5,9 @@ import { Text } from "shared/ui/text";
 import { memo } from "react";
 import { useToggle } from "shared/hooks";
 import { format } from "date-fns";
-import { MemoPlatforms as Platforms } from "./ui/platforms";
-import { MemoRatingButtons as RatingButtons } from "./ui/rating-buttons";
-import { Info } from "./ui/info";
+import { MemoPlatforms as Platforms } from "./platforms";
+import { MemoRatingButtons as RatingButtons } from "./rating-buttons";
+import { Info } from "./info";
 
 const GameCard = ({ game }) => {
   const { open, close, isShowing } = useToggle();
@@ -15,11 +15,12 @@ const GameCard = ({ game }) => {
   const src = game.background_image ?? "/defaultGameCard.jpg";
   const date = format(new Date(game.released), "MMM dd, y");
   const year = date.split(",")[1];
+
   const genres = game.genres.map(
     (genre, index, arr) =>
       `${genre.name}${index !== arr.length - 1 ? ", " : ""}`
   );
-  console.log(game);
+  // console.log(game);
   return (
     <Container isShowing={isShowing}>
       <Wrapper isShowing={isShowing}>
@@ -61,8 +62,8 @@ const GameCard = ({ game }) => {
 const Container = styled.article`
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 10px;
-  min-width: 300px;
-  max-width: 380px;
+  width: 100%;
+  min-width: 230px;
   position: relative;
   place-self: center;
   height: ${({ isShowing }) => (isShowing ? "354px" : "auto")};
@@ -82,9 +83,7 @@ const Wrapper = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  min-width: 300px;
+  min-width: 200px;
   height: 220px;
   position: relative;
 `;
@@ -92,10 +91,6 @@ const ImageContainer = styled.div`
 const StyledImage = styled(Image)`
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  min-width: 300px;
-  max-width: 380px;
-  height: 220px;
-  position: relative;
 `;
 
 const Content = styled.div`

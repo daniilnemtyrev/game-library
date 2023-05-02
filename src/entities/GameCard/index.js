@@ -1,1 +1,1 @@
-export { MemoGameCard as GameCard } from "./game-card";
+export { MemoGameCard as GameCard } from "./ui/game-card";

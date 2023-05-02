@@ -3,23 +3,19 @@ import styled from "styled-components";
 import { SearchInput } from "features/filters";
 import Link from "next/link";
 import { AppRoutes } from "shared/routes";
-import { fade, pulse } from "./animations";
+import { fade, pulse } from "./ui/animations";
 
-export const Header = () => {
-  console.log(1);
-
-  return (
-    <Container>
-      <Link href={AppRoutes.HOME}>
-        <StyledGamepadLogo />
-      </Link>
-      <SearchInput />
-      <Menu>
-        <Sticks />
-      </Menu>
-    </Container>
-  );
-};
+export const Header = () => (
+  <Container>
+    <Link href={AppRoutes.HOME}>
+      <StyledGamepadLogo />
+    </Link>
+    <SearchInput />
+    <Menu>
+      <Sticks />
+    </Menu>
+  </Container>
+);
 
 const Container = styled.header`
   padding: 1rem 1.3rem;

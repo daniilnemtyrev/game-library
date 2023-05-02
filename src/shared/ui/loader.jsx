@@ -1,6 +1,10 @@
 import styled, { keyframes } from "styled-components";
 
-export const Loader = () => <Circle />;
+export const Loader = () => (
+  <Container>
+    <Circle />
+  </Container>
+);
 
 export const rotate = keyframes`
 
@@ -8,6 +12,13 @@ export const rotate = keyframes`
 to {
     transform: rotate(360deg);
 }
+`;
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
 `;
 
 const Circle = styled.div`

@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import styled from "styled-components";
-import { Header } from "widgets";
+import { Header } from "widgets/header";
 
 export const Layout = ({ children, title }) => (
   <>
@@ -19,5 +19,5 @@ export const Layout = ({ children, title }) => (
 
 const Container = styled.main`
   height: 100vh;
-  padding: 0 10px;
+  padding: 0 30px;
 `;
