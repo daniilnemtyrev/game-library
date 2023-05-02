@@ -13,13 +13,11 @@ export const Layout = ({ children, title }) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Header />
-    <Container>
-      <main>{children}</main>
-    </Container>
+    <Container>{children}</Container>
   </>
 );
 
-const Container = styled.div`
+const Container = styled.main`
   height: 100vh;
   padding: 0 10px;
 `;

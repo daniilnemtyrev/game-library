@@ -1,10 +1,11 @@
+// @ts-nocheck
 import styled from "styled-components";
 import Image from "next/image";
 import { Text } from "shared/ui/text";
 import { memo } from "react";
 import { useToggle } from "shared/hooks";
 import { format } from "date-fns";
-import { Platforms } from "../Platforms";
+import { MemoPlatforms as Platforms } from "./ui/platforms";
 import { MemoRatingButtons as RatingButtons } from "./ui/rating-buttons";
 import { Info } from "./ui/info";
 
@@ -20,33 +21,39 @@ const GameCard = ({ game }) => {
   );
   console.log(game);
   return (
-    <Container>
-      <StyledImage
-        src={src}
-        width={394}
-        height={220}
-        alt={`${game.name} image`}
-      />
-      <Content>
-        <Platforms platforms={game.parent_platforms} />
-        <Text title={game.name} size="S" align="left" />
-        <RatingButtons rating={game.ratings_count} />
-        {isShowing && (
-          <>
-            <Info title="Realese date:" info={date} />
+    <Container isShowing={isShowing}>
+      <Wrapper isShowing={isShowing}>
+        <ImageContainer>
+          <StyledImage fill src={src} alt={`${game.name} image`} />
+        </ImageContainer>
 
-            <Info title="Genres:" info={genres} />
+        <Content>
+          <Platforms platforms={game.parent_platforms} />
 
-            <Info title="Chart:" info={`#${game.rating_top} Top ${year}`} />
+          <Text
+            title={game.name}
+            size="S"
+            align="left"
+            lineClamp={isShowing ? undefined : 1}
+          />
+          <RatingButtons rating={game.ratings_count} />
+          {isShowing && (
+            <>
+              <Info title="Realese date:" info={date} />
 
-            <Info title="Metacritic:" info={game.metacritic} />
-          </>
-        )}
+              <Info title="Genres:" info={genres} />
 
-        <View onClick={isShowing ? close : open}>
-          {isShowing ? "View less" : "View more"}
-        </View>
-      </Content>
+              <Info title="Chart:" info={`#${game.rating_top} Top ${year}`} />
+
+              <Info title="Metacritic:" info={game.metacritic} />
+            </>
+          )}
+
+          <View onClick={isShowing ? close : open}>
+            {isShowing ? "View less" : "View more"}
+          </View>
+        </Content>
+      </Wrapper>
     </Container>
   );
 };
@@ -54,11 +61,41 @@ const GameCard = ({ game }) => {
 const Container = styled.article`
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 10px;
+  min-width: 300px;
+  max-width: 380px;
+  position: relative;
+  place-self: center;
+  height: ${({ isShowing }) => (isShowing ? "354px" : "auto")};
+`;
+const Wrapper = styled.div`
+  ${({ isShowing, theme }) =>
+    isShowing
+      ? `
+      position: absolute;
+      width: 100%; 
+      z-index: 10;
+      top:0;
+      left: 0;  
+      border-radius: 10px;
+      background-color: ${theme.colors.primary};`
+      : ""}
+`;
+
+const ImageContainer = styled.div`
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  min-width: 300px;
+  height: 220px;
+  position: relative;
 `;
 
 const StyledImage = styled(Image)`
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  min-width: 300px;
+  max-width: 380px;
+  height: 220px;
+  position: relative;
 `;
 
 const Content = styled.div`

@@ -26,7 +26,7 @@ export const RatingButtons = ({ rating }) => (
 const Container = styled.div`
   display: flex;
   gap: 4px;
-  margin-top: 10px;
+  margin: 10px 0;
 `;
 
 const Button = styled.button`

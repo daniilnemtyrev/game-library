@@ -20,15 +20,19 @@ export const getStaticProps = async () => {
 export default function Home() {
   return (
     <Layout title="Home">
-      <Main>
+      <Wrapper>
         <Text
           title="New and trending"
           text="Based on player counts and release date"
         />
         <GamesList />
-      </Main>
+      </Wrapper>
     </Layout>
   );
 }
 
-const Main = styled.main``;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

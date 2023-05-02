@@ -2,9 +2,15 @@
 import styled, { css } from "styled-components";
 import { switchProp } from "styled-tools";
 
-export function Text({ title = "", text = "", size = "L", align = "center" }) {
+export function Text({
+  title = "",
+  text = "",
+  size = "L",
+  align = "center",
+  lineClamp,
+}) {
   return (
-    <Container align={align}>
+    <Container align={align} lineClamp={lineClamp}>
       {title && <Title size={size}>{title}</Title>}
       {text && <StyledText>{text}</StyledText>}
     </Container>
@@ -12,6 +18,11 @@ export function Text({ title = "", text = "", size = "L", align = "center" }) {
 }
 
 const Container = styled.div`
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: ${({ lineClamp }) => lineClamp ?? "none"};
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   ${switchProp("align", {
     left: css`
       text-align: left;
