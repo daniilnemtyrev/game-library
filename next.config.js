@@ -15,6 +15,12 @@ const nextConfig = {
         port: "",
         pathname: "/media/**",
       },
+      {
+        protocol: "https",
+        hostname: "ag.ru",
+        port: "",
+        pathname: "/screenshots/**",
+      },
     ],
   },
   async redirects() {

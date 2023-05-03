@@ -28,7 +28,7 @@ export const getStaticPaths = async () => ({
 const GamePage = () => {
   const { query } = useRouter();
 
-  return <Layout title="Page">{query && <Game id={query.id} />}</Layout>;
+  return <Layout title={query.id}>{query && <Game id={query.id} />}</Layout>;
 };
 
 export default GamePage;

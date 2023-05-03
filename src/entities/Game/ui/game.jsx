@@ -36,7 +36,7 @@ export const Game = ({ id }) => {
         text={game?.description_raw}
         size="S"
         align="left"
-        lineClamp={isOpenAbout ? undefined : 8}
+        lineClamp={isOpenAbout ? undefined : 4}
       >
         <AboutButton onClick={toggleAbout}>
           {isOpenAbout ? "Hide" : "Show more"}
