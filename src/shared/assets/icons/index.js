@@ -12,3 +12,4 @@ export { MacOSLogo } from "./macos-logo";
 export { Gift } from "./gift";
 export { Plus } from "./plus";
 export { Other } from "./other";
+export { FilterDirection } from "./filter-direction";

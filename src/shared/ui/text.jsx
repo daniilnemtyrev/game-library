@@ -55,10 +55,15 @@ const Title = styled.span`
       font-size: 36px;
       line-height: 40px;
     `,
+
+    XL: css`
+      font-size: 72px;
+      line-height: 68px;
+    `,
   })}
 `;
 
 const StyledText = styled.p`
   font-size: 16px;
-  margin: 8px 0 0;
+  margin-top: 12px;
 `;

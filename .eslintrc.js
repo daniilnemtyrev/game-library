@@ -41,5 +41,6 @@ module.exports = {
     "i18next/no-literal-string": 1,
     "no-param-reassign": 0,
     "react/prop-types": 0,
+    camelcase: 0,
   },
 };

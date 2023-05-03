@@ -4,6 +4,7 @@ import { Text } from "shared/ui";
 import { GamesService } from "shared/api/services/games-service";
 import { QueryClient, dehydrate } from "react-query";
 import { GamesList } from "entities/GamesList";
+import { OrderFilters, PlatformsFilters } from "features/filters";
 
 export const getStaticProps = async () => {
   const queryClient = new QueryClient();
@@ -23,8 +24,15 @@ export default function Home() {
       <Wrapper>
         <Text
           title="New and trending"
+          size="XL"
           text="Based on player counts and release date"
+          align="left"
         />
+        <Filters>
+          <OrderFilters />
+          <PlatformsFilters />
+        </Filters>
+
         <GamesList />
       </Wrapper>
     </Layout>
@@ -34,5 +42,10 @@ export default function Home() {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 20px;
+`;
+
+const Filters = styled.div`
+  display: flex;
+  gap: 20px;
 `;

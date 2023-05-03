@@ -12,7 +12,7 @@ import {
 import styled from "styled-components";
 
 const Platforms = ({ platforms }) => {
-  const icons = platforms.map((platform) => {
+  const icons = platforms?.map((platform) => {
     switch (platform.platform.id) {
       case 1:
         return { icon: <WindowsLogo />, id: 1 };
@@ -37,7 +37,7 @@ const Platforms = ({ platforms }) => {
 
   return (
     <Container>
-      {icons.map((item) => item && <Icon key={item.id}>{item.icon}</Icon>)}
+      {icons?.map((item) => item && <Icon key={item.id}>{item.icon}</Icon>)}
     </Container>
   );
 };

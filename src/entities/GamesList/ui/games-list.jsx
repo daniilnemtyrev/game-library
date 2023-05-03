@@ -1,6 +1,10 @@
 import { GameCard } from "entities/GameCard";
-import { searchSelector } from "features/filters";
-import { useCallback, useEffect, useRef } from "react";
+import {
+  searchSelector,
+  orderFilterSelector,
+  platformFilterSelector,
+} from "features/filters";
+import { useCallback, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useIntersectionObserver } from "shared/hooks";
 import { Loader } from "shared/ui";
@@ -9,8 +13,18 @@ import { useGamesInfiniteQuery } from "../model/hooks";
 
 export const GamesList = () => {
   const search = useSelector(searchSelector);
+  const orderFilter = useSelector(orderFilterSelector);
+  const { direction, order } = orderFilter;
+  const { id } = useSelector(platformFilterSelector);
+
+  console.log(id);
+
   const { data, isLoading, isError, fetchNextPage, isFetchingNextPage } =
-    useGamesInfiniteQuery({ search });
+    useGamesInfiniteQuery({
+      search,
+      ordering: direction && order.name ? `-${order.name}` : order.name,
+      parent_platforms: id,
+    });
   const intersectionDiv = useRef(null);
 
   const handleIntersection = useCallback(() => {
@@ -44,7 +58,6 @@ const Container = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin-top: 40px;
   max-width: 1920px;
 
   @media (min-width: 630px) {
