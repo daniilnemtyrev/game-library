@@ -9,15 +9,18 @@ export function Text({
   align = "center",
   hover = false,
   lineClamp,
+  className,
+  children,
 }) {
   return (
-    <Container align={align} lineClamp={lineClamp}>
+    <Container align={align} lineClamp={lineClamp} className={className}>
       {title && (
         <Title size={size} hover={hover}>
           {title}
         </Title>
       )}
       {text && <StyledText>{text}</StyledText>}
+      {children}
     </Container>
   );
 }

@@ -1,11 +1,11 @@
 import { useLayoutEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-export function Portal({ children, containerName = "body" }) {
+export function Portal({ children, containerName = "__next" }) {
   const [container, setContainer] = useState(null);
 
   useLayoutEffect(() => {
-    const element = document.querySelector(containerName);
+    const element = document.getElementById(containerName);
 
     if (!element) {
       throw new Error("Element not found");

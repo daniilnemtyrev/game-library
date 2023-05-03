@@ -32,7 +32,6 @@ const GameCard = ({ game }) => {
     (genre, index, arr) =>
       `${genre.name}${index !== arr.length - 1 ? ", " : ""}`
   );
-  // console.log(game);
   return (
     <Container isShowing={isShowing}>
       <Wrapper isShowing={isShowing}>
@@ -42,7 +41,7 @@ const GameCard = ({ game }) => {
 
         <Content>
           <Platforms platforms={game.parent_platforms} />
-          <Link href={`${AppRoutes.GAMES}/${game.id}`}>
+          <Link href={`${AppRoutes.GAMES}/${game.slug}`}>
             <Text
               title={game.name}
               size="S"
