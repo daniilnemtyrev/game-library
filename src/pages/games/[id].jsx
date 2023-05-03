@@ -1,16 +1,16 @@
 import axios from "axios";
+import { Game } from "entities/Game";
 import { useRouter } from "next/router";
 import { QueryClient, dehydrate } from "react-query";
+import { GamesRemoteService } from "shared/api";
 import { Layout } from "widgets/layout";
 
 export const getStaticProps = async (context) => {
   const id = context.params?.id;
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(["games", id], () =>
-    axios
-      .get(`${process.env.BASE_URL}/games?token&key=${process.env.API_KEY}`)
-      .then(({ data }) => data)
+  await queryClient.prefetchQuery(["games"], () =>
+    GamesRemoteService.getRemoteGameById(id)
   );
 
   return {
@@ -28,7 +28,7 @@ export const getStaticPaths = async () => ({
 const GamePage = () => {
   const { query } = useRouter();
 
-  return <Layout />;
+  return <Layout title="Page">{query && <Game id={query.id} />}</Layout>;
 };
 
 export default GamePage;

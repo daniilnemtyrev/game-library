@@ -5,12 +5,24 @@ import { Text } from "shared/ui/text";
 import { memo } from "react";
 import { useToggle } from "shared/hooks";
 import { format } from "date-fns";
+import Link from "next/link";
+import { AppRoutes } from "shared/routes";
 import { MemoPlatforms as Platforms } from "./platforms";
 import { MemoRatingButtons as RatingButtons } from "./rating-buttons";
 import { Info } from "./info";
 
 const GameCard = ({ game }) => {
   const { open, close, isShowing } = useToggle();
+
+  const openHandler = (e) => {
+    e.stopPropagation();
+    open();
+  };
+
+  const closeHandler = (e) => {
+    e.stopPropagation();
+    close();
+  };
 
   const src = game.background_image ?? "/defaultGameCard.jpg";
   const date = format(new Date(game.released), "MMM dd, y");
@@ -30,13 +42,16 @@ const GameCard = ({ game }) => {
 
         <Content>
           <Platforms platforms={game.parent_platforms} />
+          <Link href={`${AppRoutes.GAMES}/${game.id}`}>
+            <Text
+              title={game.name}
+              size="S"
+              align="left"
+              lineClamp={isShowing ? undefined : 1}
+              hover
+            />
+          </Link>
 
-          <Text
-            title={game.name}
-            size="S"
-            align="left"
-            lineClamp={isShowing ? undefined : 1}
-          />
           <RatingButtons rating={game.ratings_count} />
           {isShowing && (
             <>
@@ -50,7 +65,7 @@ const GameCard = ({ game }) => {
             </>
           )}
 
-          <View onClick={isShowing ? close : open}>
+          <View onClick={isShowing ? closeHandler : openHandler}>
             {isShowing ? "View less" : "View more"}
           </View>
         </Content>
@@ -63,7 +78,8 @@ const Container = styled.article`
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 10px;
   width: 100%;
-  min-width: 230px;
+  max-width: 400px;
+  min-width: 300px;
   position: relative;
   place-self: center;
   height: ${({ isShowing }) => (isShowing ? "354px" : "auto")};
@@ -83,7 +99,7 @@ const Wrapper = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  min-width: 200px;
+  min-width: 300px;
   height: 220px;
   position: relative;
 `;

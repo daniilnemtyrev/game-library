@@ -1,4 +1,3 @@
-import axios from "axios";
 import Cors from "cors";
 import { GamesRemoteService } from "shared/api";
 
@@ -21,7 +20,7 @@ function runMiddleware(req, res, fn) {
 export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
 
-  const data = await GamesRemoteService.getRemoteGames(req.query);
+  const data = await GamesRemoteService.getRemoteGameById(req.query.id);
 
   res.json(data);
 }

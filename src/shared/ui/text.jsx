@@ -7,11 +7,16 @@ export function Text({
   text = "",
   size = "L",
   align = "center",
+  hover = false,
   lineClamp,
 }) {
   return (
     <Container align={align} lineClamp={lineClamp}>
-      {title && <Title size={size}>{title}</Title>}
+      {title && (
+        <Title size={size} hover={hover}>
+          {title}
+        </Title>
+      )}
       {text && <StyledText>{text}</StyledText>}
     </Container>
   );
@@ -61,6 +66,10 @@ const Title = styled.span`
       line-height: 68px;
     `,
   })}
+
+  &:hover {
+    opacity: ${({ hover }) => (hover ? 0.6 : 1)};
+  }
 `;
 
 const StyledText = styled.p`

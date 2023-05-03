@@ -14,4 +14,12 @@ export class GamesLocalService {
 
     return data;
   }
+
+  static async getGameById(id) {
+    const { data } = await this.axios({
+      url: `${ApiRoutes.GAMES}/${id}`,
+    });
+
+    return data;
+  }
 }

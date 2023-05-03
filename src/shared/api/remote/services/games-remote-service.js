@@ -17,4 +17,15 @@ export class GamesRemoteService {
 
     return data;
   }
+
+  static async getRemoteGameById(id) {
+    const { data } = await this.axios({
+      url: `${ApiRoutes.GAMES}/${id}`,
+      params: {
+        key: process.env.API_KEY,
+      },
+    });
+
+    return data;
+  }
 }

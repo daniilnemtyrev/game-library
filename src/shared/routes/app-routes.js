@@ -1,3 +1,3 @@
 export const AppRoutes = {
-  HOME: "/",
+  GAMES: "/games",
 };

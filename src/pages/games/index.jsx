@@ -20,9 +20,9 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Home() {
+export default function Games() {
   return (
-    <Layout title="Home">
+    <Layout title="Games">
       <Wrapper>
         <Text
           title="New and trending"
