@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from "react-query";
-import { GamesService } from "shared/api/services/games-service";
+import { GamesLocalService } from "shared/api";
 
 export const useGamesInfiniteQuery = ({
   search,
@@ -12,7 +12,7 @@ export const useGamesInfiniteQuery = ({
     queryFn: async ({ pageParam }) => {
       const page = pageParam ?? 1;
 
-      const data = await GamesService.getGames({
+      const data = await GamesLocalService.getGamesLocal({
         search,
         ordering,
         parent_platforms,

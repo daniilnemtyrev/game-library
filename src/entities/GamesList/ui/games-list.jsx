@@ -17,8 +17,6 @@ export const GamesList = () => {
   const { direction, order } = orderFilter;
   const { id } = useSelector(platformFilterSelector);
 
-  console.log(id);
-
   const { data, isLoading, isError, fetchNextPage, isFetchingNextPage } =
     useGamesInfiniteQuery({
       search,

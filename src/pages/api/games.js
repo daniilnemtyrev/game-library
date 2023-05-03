@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cors from "cors";
+import { GamesRemoteService } from "shared/api";
 
 const cors = Cors({
   methods: ["POST", "GET", "HEAD"],
@@ -19,11 +20,8 @@ function runMiddleware(req, res, fn) {
 
 export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
-  const { data } = await axios.get(
-    `https://api.rawg.io/api/games?token&key=${process.env.API_KEY}`,
-    {
-      params: req.query,
-    }
-  );
+
+  const data = await GamesRemoteService.getRemoteGames(req.query);
+
   res.json(data);
 }

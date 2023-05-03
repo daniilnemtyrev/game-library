@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import { Layout } from "widgets/layout";
 import { Text } from "shared/ui";
-import { GamesService } from "shared/api/services/games-service";
 import { QueryClient, dehydrate } from "react-query";
 import { GamesList } from "entities/GamesList";
 import { OrderFilters, PlatformsFilters } from "features/filters";
+import { GamesRemoteService } from "shared/api";
 
 export const getStaticProps = async () => {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(["games"], () => GamesService.getGames());
+  await queryClient.prefetchQuery(["games"], () =>
+    GamesRemoteService.getRemoteGames()
+  );
 
   return {
     props: {
