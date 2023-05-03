@@ -12,7 +12,7 @@ export const Game = ({ id }) => {
   const { toggle: toggleAbout, isShowing: isOpenAbout } = useToggle();
 
   const date = game && format(new Date(game.released), "MMM dd, y");
-  console.log(game);
+  // console.log(game);
 
   if (isLoading) {
     return <Loader />;
