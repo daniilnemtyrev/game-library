@@ -35,7 +35,16 @@ const GameCard = ({ game }) => {
     <Container isShowing={isShowing}>
       <Wrapper isShowing={isShowing}>
         <ImageContainer>
-          <StyledImage fill src={src} alt={`${game.name} image`} />
+          <StyledImage
+            fill
+            src={src}
+            priority={false}
+            quality={75}
+            sizes="(max-width: 1200px) 300px,
+ (max-width: 768px) 200px,
+ 100px"
+            alt={`${game.name} image`}
+          />
         </ImageContainer>
 
         <Content>

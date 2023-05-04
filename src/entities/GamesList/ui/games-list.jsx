@@ -17,15 +17,13 @@ export const GamesList = () => {
   const { direction, order } = orderFilter;
   const { id } = useSelector(platformFilterSelector);
 
-  const {
-    data, isLoading, isError, fetchNextPage, isFetchingNextPage,
-  } = useGamesInfiniteQuery({
-    search,
-    ordering: direction && order.name ? `-${order.name}` : order.name,
-    parent_platforms: id,
-  });
+  const { data, isLoading, isError, fetchNextPage, isFetchingNextPage } =
+    useGamesInfiniteQuery({
+      search,
+      ordering: direction && order.name ? `-${order.name}` : order.name,
+      parent_platforms: id,
+    });
   const intersectionDiv = useRef(null);
-
   const handleIntersection = useCallback(() => {
     if (!isError && !isFetchingNextPage) {
       fetchNextPage();
@@ -55,32 +53,29 @@ export const GamesList = () => {
 const Container = styled.section`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 20px;
   max-width: 1920px;
 
-  @media (min-width: 630px) {
+  @media (min-width: 678px) {
     display: grid;
-
-    grid-template-columns: repeat(2, minmax(300px, 380px));
+    grid-template-columns: repeat(2, 300px);
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: 1000px) {
     display: grid;
-
-    grid-template-columns: repeat(3, minmax(300px, 380px));
+    grid-template-columns: repeat(3, 300px);
   }
 
-  @media (min-width: 1300px) {
+  @media (min-width: 1320px) {
     display: grid;
-
-    grid-template-columns: repeat(4, minmax(300px, 380px));
+    grid-template-columns: repeat(4, 300px);
   }
 
-  @media (min-width: 1500px) {
+  @media (min-width: 1650px) {
     display: grid;
-
-    grid-template-columns: repeat(5, minmax(300px, 380px));
+    grid-template-columns: repeat(5, 300px);
   }
 `;
 

@@ -18,9 +18,9 @@ export class GamesRemoteService {
     return data;
   }
 
-  static async getRemoteGameById(id) {
+  static async getRemoteGameById(slug) {
     const { data } = await this.axios({
-      url: `${ApiRoutes.GAMES}/${id}`,
+      url: `${ApiRoutes.GAMES}/${slug}`,
       params: {
         key: process.env.API_KEY,
       },
