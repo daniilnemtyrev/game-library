@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Game } from "entities/Game";
 import { useRouter } from "next/router";
 import { QueryClient, dehydrate } from "react-query";

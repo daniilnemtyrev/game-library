@@ -1,18 +1,17 @@
 import styled from "styled-components";
 import { format } from "date-fns";
 import { Platforms } from "entities/GameCard";
-import { Loader, Portal } from "shared/ui";
+import { Loader } from "shared/ui";
 import { Text } from "shared/ui/text";
 import { useToggle } from "shared/hooks";
 import Link from "next/link";
 import { useGetGameQuery } from "../model/hooks";
 
 export const Game = ({ id }) => {
-  const { data: game, isLoading, isError } = useGetGameQuery(id);
+  const { data: game, isLoading } = useGetGameQuery(id);
   const { toggle: toggleAbout, isShowing: isOpenAbout } = useToggle();
 
   const date = game && format(new Date(game.released), "MMM dd, y");
-  // console.log(game);
 
   if (isLoading) {
     return <Loader />;
@@ -20,8 +19,6 @@ export const Game = ({ id }) => {
 
   return (
     <Container>
-      {/* <Background /> TODO */}
-
       <Release>
         <ReleaseDate>{date}</ReleaseDate>
         <Platforms platforms={game?.parent_platforms} />
@@ -51,19 +48,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-
-// const Background = styled.div`
-//   position: absolute;
-//   background-image: url("https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg");
-//   width: 100%;
-//   top: 0;
-//   left: 0;
-//   height: 50vh;
-//   z-index: -1;
-//   background-size: cover;
-//   background-position: center center;
-//   opacity: 0.3;
-// `;
 
 const Release = styled.div`
   display: flex;

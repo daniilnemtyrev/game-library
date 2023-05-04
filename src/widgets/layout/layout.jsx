@@ -17,10 +17,6 @@ export const Layout = ({ children, title }) => (
   </>
 );
 
-const Wrapper = styled.div`
-  position: relative;
-`;
-
 const Container = styled.main`
   height: 100vh;
   padding: 0 30px;
