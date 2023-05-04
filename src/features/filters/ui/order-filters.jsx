@@ -19,8 +19,7 @@ export const OrderFilters = () => {
   const { toggle, isShowing } = useToggle();
 
   const { order } = useSelector(orderFilterSelector);
-  const { setOrderFilterValue, toggleOrderDirection, resetOrderFilters } =
-    filterActions;
+  const { setOrderFilterValue, toggleOrderDirection, resetOrderFilters } = filterActions;
   const dispatch = useDispatch();
 
   const onSetFilter = (filter) => {

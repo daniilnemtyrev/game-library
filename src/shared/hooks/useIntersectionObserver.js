@@ -4,7 +4,7 @@ import { useEffect } from "react";
 export const useIntersectionObserver = (
   elementRef,
   { threshold = 0, root = null, rootMargin = "0%" },
-  onIntersection
+  onIntersection,
 ) => {
   useEffect(() => {
     const node = elementRef?.current;

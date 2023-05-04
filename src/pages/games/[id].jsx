@@ -8,9 +8,7 @@ export const getStaticProps = async (context) => {
   const id = context.params?.id;
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(["games"], () =>
-    GamesRemoteService.getRemoteGameById(id)
-  );
+  await queryClient.prefetchQuery(["games"], () => GamesRemoteService.getRemoteGameById(id));
 
   return {
     props: {

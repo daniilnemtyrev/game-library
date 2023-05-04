@@ -29,8 +29,7 @@ const GameCard = ({ game }) => {
   const year = date.split(",")[1];
 
   const genres = game.genres.map(
-    (genre, index, arr) =>
-      `${genre.name}${index !== arr.length - 1 ? ", " : ""}`
+    (genre, index, arr) => `${genre.name}${index !== arr.length - 1 ? ", " : ""}`,
   );
   return (
     <Container isShowing={isShowing}>
@@ -84,9 +83,8 @@ const Container = styled.article`
   height: ${({ isShowing }) => (isShowing ? "354px" : "auto")};
 `;
 const Wrapper = styled.div`
-  ${({ isShowing, theme }) =>
-    isShowing
-      ? `
+  ${({ isShowing, theme }) => (isShowing
+    ? `
       position: absolute;
       width: 100%; 
       z-index: 1;
@@ -94,7 +92,7 @@ const Wrapper = styled.div`
       left: 0;  
       border-radius: 10px;
       background-color: ${theme.colors.primary};`
-      : ""}
+    : "")}
 `;
 
 const ImageContainer = styled.div`

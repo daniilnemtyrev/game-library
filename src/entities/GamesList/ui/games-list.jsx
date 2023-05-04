@@ -17,12 +17,13 @@ export const GamesList = () => {
   const { direction, order } = orderFilter;
   const { id } = useSelector(platformFilterSelector);
 
-  const { data, isLoading, isError, fetchNextPage, isFetchingNextPage } =
-    useGamesInfiniteQuery({
-      search,
-      ordering: direction && order.name ? `-${order.name}` : order.name,
-      parent_platforms: id,
-    });
+  const {
+    data, isLoading, isError, fetchNextPage, isFetchingNextPage,
+  } = useGamesInfiniteQuery({
+    search,
+    ordering: direction && order.name ? `-${order.name}` : order.name,
+    parent_platforms: id,
+  });
   const intersectionDiv = useRef(null);
 
   const handleIntersection = useCallback(() => {
@@ -34,7 +35,7 @@ export const GamesList = () => {
   useIntersectionObserver(
     intersectionDiv,
     { threshold: 0.01 },
-    handleIntersection
+    handleIntersection,
   );
 
   return (
@@ -42,7 +43,7 @@ export const GamesList = () => {
       {isLoading && <Loader />}
       <Container>
         {data?.pages?.map((games) =>
-          games?.results?.map((game) => <GameCard key={game.id} game={game} />)
+          games?.results?.map((game) => <GameCard key={game.id} game={game} />),
         )}
       </Container>
       <IntersectionDiv ref={intersectionDiv} />

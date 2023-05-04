@@ -6,7 +6,7 @@
     "start": "next dev",
     "build": "next build",
     "prod": "next start",
-    "lint": "next lint"
+    "lint": "next lint --fix"
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.9.5",

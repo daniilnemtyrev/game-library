@@ -1,24 +1,28 @@
 module.exports = {
   env: {
     browser: true,
+    es2021: true,
+    node: true,
   },
   extends: [
-    "eslint-config-next",
+    "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:import/recommended",
+    "plugin:@next/next/recommended",
     "airbnb",
-    "plugin:react/jsx-runtime",
-    "prettier",
+    "airbnb/hooks",
   ],
+  globals: {
+    React: "writable",
+  },
   parser: "@babel/eslint-parser",
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
+    ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react"],
+  plugins: ["react", "@next/next"],
   rules: {
     "import/no-unresolved": 0,
     "react/require-default-props": 0,
@@ -39,6 +43,9 @@ module.exports = {
     "no-underscore-dangle": 0,
     "no-param-reassign": 0,
     "react/prop-types": 0,
+    "implicit-arrow-linebreak": 0,
+    "function-paren-newline": 0,
+    quotes: ["error", "double"],
     camelcase: 0,
   },
 };

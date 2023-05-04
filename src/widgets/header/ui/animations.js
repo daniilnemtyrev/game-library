@@ -5,7 +5,7 @@ export const fade = keyframes`
 fill:#3914AF;
 }
 50% {
- fill:#200772	;
+ fill:#200772;
 }
 100%{
   fill:#3914AF;

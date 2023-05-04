@@ -3,7 +3,9 @@ import styled from "styled-components";
 
 export const Input = memo(
   // @ts-ignore
-  ({ value, onChange, id, label, type = "text", autofocus, ...rest }) => {
+  ({
+    value, onChange, id, label, type = "text", autofocus, ...rest
+  }) => {
     const inputRef = useRef(null);
 
     const onChangeHandler = (e) => {
@@ -28,7 +30,7 @@ export const Input = memo(
         />
       </Wrapper>
     );
-  }
+  },
 );
 
 const Wrapper = styled.div`
