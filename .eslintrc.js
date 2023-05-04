@@ -10,6 +10,7 @@ module.exports = {
     "plugin:@next/next/recommended",
     "airbnb",
     "airbnb/hooks",
+    "prettier",
   ],
   globals: {
     React: "writable",

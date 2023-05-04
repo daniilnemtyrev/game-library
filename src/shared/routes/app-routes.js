@@ -1,3 +1,4 @@
 export const AppRoutes = {
-  GAMES: "/games",
+  MAIN: "/",
+  GAME: "/game",
 };

@@ -23,15 +23,6 @@ const nextConfig = {
       },
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/games",
-        permanent: true,
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;

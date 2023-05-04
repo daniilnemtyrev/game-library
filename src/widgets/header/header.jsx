@@ -7,7 +7,7 @@ import { fade, pulse } from "./ui/animations";
 
 export const Header = () => (
   <Container>
-    <Link href={AppRoutes.GAMES}>
+    <Link href={AppRoutes.MAIN}>
       <StyledGamepadLogo />
     </Link>
     <SearchInput />

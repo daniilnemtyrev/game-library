@@ -9,7 +9,9 @@ import { GamesRemoteService } from "shared/api";
 export const getStaticProps = async () => {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(["games"], () => GamesRemoteService.getRemoteGames());
+  await queryClient.prefetchQuery(["games"], () =>
+    GamesRemoteService.getRemoteGames(),
+  );
 
   return {
     props: {
@@ -20,7 +22,7 @@ export const getStaticProps = async () => {
 
 export default function Games() {
   return (
-    <Layout title="Games">
+    <Layout title="Main Page">
       <Wrapper>
         <Text
           title="New and trending"

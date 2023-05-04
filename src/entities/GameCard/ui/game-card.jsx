@@ -1,4 +1,3 @@
-// @ts-nocheck
 import styled from "styled-components";
 import Image from "next/image";
 import { Text } from "shared/ui/text";
@@ -29,7 +28,8 @@ const GameCard = ({ game }) => {
   const year = date.split(",")[1];
 
   const genres = game.genres.map(
-    (genre, index, arr) => `${genre.name}${index !== arr.length - 1 ? ", " : ""}`,
+    (genre, index, arr) =>
+      `${genre.name}${index !== arr.length - 1 ? ", " : ""}`,
   );
   return (
     <Container isShowing={isShowing}>
@@ -40,7 +40,7 @@ const GameCard = ({ game }) => {
 
         <Content>
           <Platforms platforms={game.parent_platforms} />
-          <Link href={`${AppRoutes.GAMES}/${game.slug}`}>
+          <Link href={`${AppRoutes.GAME}/${game.slug}`}>
             <Text
               title={game.name}
               size="S"
@@ -83,8 +83,9 @@ const Container = styled.article`
   height: ${({ isShowing }) => (isShowing ? "354px" : "auto")};
 `;
 const Wrapper = styled.div`
-  ${({ isShowing, theme }) => (isShowing
-    ? `
+  ${({ isShowing, theme }) =>
+    isShowing
+      ? `
       position: absolute;
       width: 100%; 
       z-index: 1;
@@ -92,7 +93,7 @@ const Wrapper = styled.div`
       left: 0;  
       border-radius: 10px;
       background-color: ${theme.colors.primary};`
-    : "")}
+      : ""}
 `;
 
 const ImageContainer = styled.div`

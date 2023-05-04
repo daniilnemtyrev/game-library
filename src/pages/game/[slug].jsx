@@ -8,7 +8,9 @@ export const getStaticProps = async (context) => {
   const id = context.params?.id;
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(["games"], () => GamesRemoteService.getRemoteGameById(id));
+  await queryClient.prefetchQuery(["games"], () =>
+    GamesRemoteService.getRemoteGameById(id),
+  );
 
   return {
     props: {
@@ -25,7 +27,9 @@ export const getStaticPaths = async () => ({
 const GamePage = () => {
   const { query } = useRouter();
 
-  return <Layout title={query.id}>{query && <Game id={query.id} />}</Layout>;
+  return (
+    <Layout title={query.slug}>{query && <Game id={query.slug} />}</Layout>
+  );
 };
 
 export default GamePage;
