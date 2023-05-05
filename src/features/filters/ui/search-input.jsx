@@ -25,17 +25,14 @@ export const SearchInput = () => {
   return (
     <Wrapper>
       <AbsoluteSearch color={theme.colors.ligthGray} />
-      <Input
-        // @ts-ignore
-        value={search}
-        onChange={onChangeHandler}
-      />
+      <Input value={search} onChange={onChangeHandler} />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   position: relative;
+  width: 40%;
 `;
 
 const AbsoluteSearch = styled(Search)`

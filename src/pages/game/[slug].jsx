@@ -1,4 +1,4 @@
-import { Platforms, useGetGameQuery } from "entities/GameCard";
+import { Info, Platforms, useGetGameQuery } from "entities/GameCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { QueryClient, dehydrate } from "react-query";
@@ -7,9 +7,8 @@ import styled from "styled-components";
 import { Layout } from "widgets/layout";
 import { Text } from "shared/ui/text";
 import { format } from "date-fns";
-import { id } from "date-fns/locale";
 import { useToggle } from "shared/hooks";
-import { Loader } from "shared/ui";
+import { CarouselWithSlider, Loader } from "shared/ui";
 
 export const getStaticProps = async (context) => {
   const id = context.params?.id;
@@ -39,34 +38,56 @@ const GamePage = () => {
 
   const date = game && format(new Date(game.released), "MMM dd, y");
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  const images = game && [
+    {
+      id: 0,
+      link: game.background_image,
+    },
+    {
+      id: 1,
+      link: game.background_image_additional,
+    },
+  ];
+
+  const genres = game?.genres.map(
+    (genre, index, arr) =>
+      `${genre.name}${index !== arr.length - 1 ? ", " : ""}`,
+  );
 
   return (
     <Layout title={query.slug}>
-      {query && (
+      {isLoading && <Loader />}
+      {game && (
         <Container>
-          <Release>
-            <ReleaseDate>{date}</ReleaseDate>
-            <Platforms platforms={game?.parent_platforms} />
-          </Release>
-          <AvgTime>{`AVERAGE PLAYTIME: ${game?.playtime} HOURS`}</AvgTime>
-          <WebLink href={game?.website} passHref target="_blank">
-            <Title title={game?.name} size="L" />
-          </WebLink>
-
-          <About
-            title="About"
-            text={game?.description_raw}
-            size="S"
-            align="left"
-            lineClamp={isOpenAbout ? undefined : 4}
-          >
-            <AboutButton onClick={toggleAbout}>
-              {isOpenAbout ? "Hide" : "Show more"}
-            </AboutButton>
-          </About>
+          <Content>
+            <Release>
+              <ReleaseDate>{date}</ReleaseDate>
+              <Platforms platforms={game.parent_platforms} />
+            </Release>
+            <AvgTime>{`AVERAGE PLAYTIME: ${game.playtime} HOURS`}</AvgTime>
+            <Title title={game.name} size="L" />
+            <CarouselWithSlider images={images} />
+            <About
+              title="About"
+              text={game.description_raw}
+              size="S"
+              align="left"
+              lineClamp={isOpenAbout ? undefined : 4}
+            >
+              <AboutButton onClick={toggleAbout}>
+                {isOpenAbout ? "Hide" : "Show more"}
+              </AboutButton>
+            </About>
+            <InfoContainer>
+              <Info title="Rating" info={game.rating} />
+              <Info title="Metacritic:" info={game.metacritic} />
+              <Info title="Genres:" info={genres} />
+              <Info title="Publihers:" info={game.publishers[0].name} />
+            </InfoContainer>
+            <WebLink href={game.website} passHref target="_blank">
+              <Title title="Go to website" size="S" />
+            </WebLink>
+          </Content>
         </Container>
       )}
     </Layout>
@@ -75,14 +96,35 @@ const GamePage = () => {
 
 const Container = styled.div`
   display: flex;
+  justify-content: center;
+`;
+
+const Content = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 486px;
+
+  @media (min-width: 1000px) {
+    display: grid;
+    max-width: 900px;
+    grid-template-columns: 400px 1fr;
+    column-gap: 30px;
+  }
+
+  @media (min-width: 1320px) {
+    display: grid;
+    max-width: 1200px;
+    grid-template-columns: 500px 1fr;
+    column-gap: 30px;
+  }
 `;
 
 const Release = styled.div`
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
+  grid-column: 1/3;
 `;
 
 const ReleaseDate = styled.span`
@@ -95,15 +137,26 @@ const ReleaseDate = styled.span`
 const AvgTime = styled.span`
   color: ${({ theme }) => theme.colors.white};
   margin-bottom: 20px;
+  grid-column: 1/3;
 `;
 
 const Title = styled(Text)`
   margin-bottom: 20px;
+  grid-column: 1/2;
 `;
 
 const About = styled(Text)`
   margin-bottom: 20px;
   position: relative;
+
+  @media (min-width: 1000px) {
+    -webkit-line-clamp: none;
+    overflow: visible;
+    display: block;
+    & button {
+      display: none;
+    }
+  }
 `;
 
 const AboutButton = styled.button`
@@ -111,14 +164,23 @@ const AboutButton = styled.button`
   right: 0;
   bottom: -5px;
   padding: 3px;
+  border-radius: 3px;
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const WebLink = styled(Link)`
+  grid-column: 1/2;
   cursor: pointer;
   &:hover {
     opacity: 0.5;
   }
+`;
+
+const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
 `;
 
 export default GamePage;

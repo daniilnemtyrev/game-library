@@ -1,4 +1,3 @@
-// @ts-nocheck
 import styled, { css } from "styled-components";
 import { switchProp } from "styled-tools";
 
@@ -62,6 +61,10 @@ const Title = styled.span`
     L: css`
       font-size: 36px;
       line-height: 40px;
+      @media (min-width: 1000px) {
+        font-size: 72px;
+        line-height: 68px;
+      }
     `,
 
     XL: css`

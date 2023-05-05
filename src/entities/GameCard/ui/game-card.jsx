@@ -39,10 +39,9 @@ const GameCard = ({ game }) => {
             fill
             src={src}
             priority={false}
-            quality={75}
-            sizes="(max-width: 1200px) 300px,
- (max-width: 768px) 200px,
- 100px"
+            sizes="(max-width: 1200px) 700px,
+ (max-width: 768px) 300px,
+ 200px"
             alt={`${game.name} image`}
           />
         </ImageContainer>
@@ -88,8 +87,7 @@ const Container = styled.article`
   max-width: 400px;
   min-width: 300px;
   position: relative;
-  place-self: center;
-  height: ${({ isShowing }) => (isShowing ? "354px" : "auto")};
+  height: 352px;
 `;
 const Wrapper = styled.div`
   ${({ isShowing, theme }) =>

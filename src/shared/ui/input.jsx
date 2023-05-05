@@ -2,10 +2,7 @@ import { memo, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 export const Input = memo(
-  // @ts-ignore
-  ({
-    value, onChange, id, label, type = "text", autofocus, ...rest
-  }) => {
+  ({ value, onChange, id, label, type = "text", autofocus, ...rest }) => {
     const inputRef = useRef(null);
 
     const onChangeHandler = (e) => {
@@ -51,4 +48,5 @@ const StyledInput = styled.input`
   padding-left: 32px;
   border-radius: 7px;
   background-color: ${({ theme }) => theme.colors.primary};
+  width: 100%;
 `;
